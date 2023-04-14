@@ -9,30 +9,38 @@ class PolyTreeNode
     end
 
     def parent=(parent)
-        return nil if parent == nil 
+        # return @parent.children.delete(self) if parent == nil 
+        if parent == nil 
+            
+            @parent.children.delete(self)
+            @parent = nil 
         
-        if @parent == nil
+        elsif@parent == nil
             @parent = parent
             parent.children << self
-        # elsif 
+        elsif @parent != nil && @parent != parent 
+            @parent.children.delete(self)
+            @parent = parent
+            parent.children << self
+
         end
     end
 end
 
-        a
-    b       c
-d   e   f       g
+#         a
+#     b       c
+# d   e   f       g
 
-a = PolyTreeNode.new("a")
-b = PolyTreeNode.new("b")
-c = PolyTreeNode.new("c")
-d = PolyTreeNode.new("d")
-e = PolyTreeNode.new("e")
-f = PolyTreeNode.new("f")
+# a = PolyTreeNode.new("a")
+# b = PolyTreeNode.new("b")
+# c = PolyTreeNode.new("c")
+# d = PolyTreeNode.new("d")
+# e = PolyTreeNode.new("e")
+# f = PolyTreeNode.new("f")
 
-b.parent = a
-c.parent = a
-d.parent = b 
-e.parent = b 
+# b.parent = a
+# c.parent = a
+# d.parent = b 
+# e.parent = b 
 
-b.parent = a
+# b.parent = a
