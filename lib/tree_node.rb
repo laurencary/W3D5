@@ -27,10 +27,24 @@ class PolyTreeNode
     end
 
     def add_child(child)
-        puts child
-        puts children
+        
         if !self.children.include?(child)
             child.parent = self
+        end
+    end
+    def remove_child(child)
+        if @children.include?(child)
+            child.parent = nil 
+        else 
+            raise "this child does not exist"
+        end
+    end
+
+    def dfs(target)
+        return self if self.value == target 
+        return nil if self.children.empty? 
+        self.children.each do |child|
+            return child.dfs(target)
         end
     end
 
@@ -55,3 +69,10 @@ end
 # e.parent = b 
 
 # b.parent = a
+
+
+# class Searchable
+#     def dfs(tree_instance)
+
+
+# end
