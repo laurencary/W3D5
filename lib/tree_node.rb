@@ -41,7 +41,7 @@ class PolyTreeNode
     end
 
     def dfs(target)
-        puts self.value
+        # puts self.value
         return self if self.value == target 
         self.children.each do |child|
             found = child.dfs(target)
@@ -51,9 +51,20 @@ class PolyTreeNode
     end
 
     def bfs(target)
-        return self if self.value == target
-        
+        # return self if self.value == target
 
+        queue = [self] 
+        until queue.empty? 
+            node = queue.shift 
+            p queue.map {|node| node.value }
+            p node 
+            if node == target 
+                return node
+            else 
+                queue += node.children 
+            end
+        end
+        nil
     end
 
 end
